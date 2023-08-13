@@ -1,4 +1,4 @@
-# /usr/bin/python3
+#!/usr/bin/python3
 """
 This script defines a basic command-line interpreter for the HBNB project.
 
@@ -132,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
                 return
     
     def do_update(self, args):
-
+        pass
 
 if __name__ == '__main__':
     # Start the HBNBCommand interpreter loop
