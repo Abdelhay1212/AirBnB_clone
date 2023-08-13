@@ -42,13 +42,11 @@ class BaseModel:
         Returns:
             dict: A dictionary containing the instance's attributes and values.
         """
-        dictionary = {}
-        for key, val in self.__dict__.items():
-            if key == "created_at" or key == "updated_at":
-                dictionary[key] = val.isoformat()
-            else:
-                dictionary[key] = val
+        dictionary = {**self.__dict__}
         dictionary['__class__'] = self.__class__.__name__
+        dictionary['created_at'] = dictionary['created_at'].isoformat()
+        dictionary['updated_at'] = dictionary['updated_at'].isoformat()
+
         return dictionary
 
     def __str__(self):

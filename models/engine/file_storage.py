@@ -28,20 +28,33 @@ class FileStorage:
             object(obj): object to write
 
         """
-        self.__objects[obj.__class__.__name__ + '.' + str(obj)] = obj
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        self.__objects[key] = obj
 
     def save(self):
         """Serialize and save the data to the JSON file."""
-        with open(self.__file_path, 'w+') as f:
+        with open(self.__file_path, 'w') as f:
             json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
 
     def reload(self):
         """Deserialize and reload data from the JSON file, if it exists."""
-        try:
-            with open(self.__file_path, 'r') as f:
-                dict = json.loads(f.read())
-                for value in dict.values():
-                    cls = value["__class__"]
-                    self.new(eval(cls)(**value))
-        except Exception:
-            pass
+
+        current_classes = {'BaseModel': BaseModel}
+
+        if not os.path.exists(self.__file_path):
+            return
+
+        with open(self.__file_path, 'r') as f:
+            deserialized = None
+
+            try:
+                deserialized = json.load(f)
+            except Exception:
+                pass
+
+            if deserialized is None:
+                return
+
+            FileStorage.__objects = {
+                k: current_classes[k.split('.')[0]](**v)
+                for k, v in deserialized.items()}
