@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+# /usr/bin/python3
 '''Method Command Interpreter'''
 import cmd
 import shlex
@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         '''Create a new instance of BaseModel, save it and prints the id
-           Usage: create <class name>
+        Usage: create <class name>
         '''
         args = args.split()
         if len(args) == 0:
@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, args):
         '''Prints the string representation of a specific instance
-           Usage: show <class name> <id>
+        Usage: show <class name> <id>
         '''
         strings = args.split()
         if len(strings) == 0:
@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, args):
         '''Delete an instance
-           Usage: destroy <class name> <id>
+        Usage: destroy <class name> <id>
         '''
         args = args.split()
         objects = models.storage.all()
@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, args):
         '''Print a string representation of all instances
-           Usage: all <class name>
+        Usage: all <class name>
         '''
         args = args.split()
         objects = models.storage.all()
@@ -102,10 +102,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, args):
         '''update an instance
-           Usage update <class name> <id> <attribute name> "<attribute value>"
+        Usage update <class name> <id> <attribute name> "<attribute value>"
         '''
         objects = models.storage.all()
-        args = args.split(" ")
+        args = args.split()
 
         if len(args) == 0:
             print("** class name missing **")
@@ -166,9 +166,10 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         '''dont execute anything when user
-           press enter an empty line
+        press enter an empty line
         '''
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
