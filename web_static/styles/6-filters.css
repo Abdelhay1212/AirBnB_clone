@@ -8,6 +8,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    z-index: 999;
 }
 
 .filters button {
@@ -38,6 +39,7 @@
     height: 100%;
     padding-left: 30px;
     position: relative;
+    cursor: pointer;
 }
 
 .filters h3 {
@@ -61,7 +63,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    padding: 25px 0;
+    padding: 10px 0;
 }
 
 .locations:hover .popover,
@@ -77,6 +79,6 @@
 
 .filters h2 {
     font-size: 16px;
-    margin-bottom: 10px;
-    padding-left: 15px;
+    margin-bottom: 5px;
+    margin-left: -15px;
 }
